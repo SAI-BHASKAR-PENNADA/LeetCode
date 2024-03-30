@@ -14,10 +14,11 @@ class Solution:
                     self.stack.append(a * b)
                 else:
                     ans = a / b
-                    if ans < 0:
-                        self.stack.append(math.ceil(ans))
-                    else:
-                        self.stack.append(math.floor(ans))
+                    self.stack.append(int(ans))
+                    # if ans < 0:
+                    #     self.stack.append(math.ceil(ans))
+                    # else:
+                    #     self.stack.append(math.floor(ans))
                 # print(a,b,self.stack[-1])
             else:
                 self.stack.append(int(token))
