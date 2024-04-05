@@ -6,15 +6,15 @@ class Solution:
 
         times.sort()
         i = len(times) - 2
-        ans = [times[-1][1]]
+        last = times[-1][1]
+        ans = 1
 
         while i >= 0:
-            if times[i][1] <= ans[-1]:
-                i -= 1
-            else:
-                ans.append(times[i][1])
-                i -= 1
+            if times[i][1] > last:
+                last = times[i][1]
+                ans += 1
+            i -= 1
     
-        return len(ans)
+        return ans
 
         
