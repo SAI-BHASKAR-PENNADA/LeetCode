@@ -8,33 +8,25 @@ var isAnagram = function(s, t) {
         return false;
     }
 
-    const myMapS = new Map();
+    const map = new Map();
     for (let i = 0; i < s.length; i++) {
-        if (myMapS.has(s[i])) {
-            myMapS.set(s[i], myMapS.get(s[i]) + 1);
+        if (map.has(s[i])) {
+            map.set(s[i], map.get(s[i]) + 1);
         } else {
-            myMapS.set(s[i], 1);
+            map.set(s[i], 1);
         }
     }
 
-    const myMapT = new Map();
-    for (let i = 0; i < t.length; i++) {
-        if (myMapT.has(t[i])) {
-            myMapT.set(t[i], myMapT.get(t[i]) + 1);
+    for(let i = 0; i < t.length; i++) {
+        if (map.has(t[i])) {
+            map.set(t[i], map.get(t[i]) - 1);
         } else {
-            myMapT.set(t[i], 1);
+            return false;
         }
     }
-    // console.log(myMapS, myMapT);
-    for (const [key, value] of myMapS) {
-        // console.log(myMapT.get(key), value);
-        if (myMapT.get(key) !== value)
-            return false;
-    }
-    for (const [key, value] of myMapT) {
-        // console.log(value, myMapS.get(key));
-        if (value !== myMapS.get(key))
-            return false;
+
+    for (const [key, value] of map) {
+        if (value !== 0) return false;
     }
     return true;
 };
