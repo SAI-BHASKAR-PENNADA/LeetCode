@@ -13,9 +13,10 @@ class Solution:
             k = len(nums) - 1
 
             while j < k:
-                if first + nums[j] + nums[k] > 0:
+                val = first + nums[j] + nums[k]
+                if val > 0:
                     k -= 1
-                elif first + nums[j] + nums[k] < 0:
+                elif val < 0:
                     j += 1
                 else:
                     ans.append([first, nums[j], nums[k]])
