@@ -21,9 +21,9 @@ class Solution:
                     ans.append([first, nums[j], nums[k]])
                     j += 1
                     k -= 1
-                    while j < len(nums) and k > j and nums[j] == nums[j-1]:
+                    while k > j and nums[j] == nums[j-1]:
                         j += 1
-                    while k >=0 and k > j and nums[k] == nums[k+1]:
+                    while k > j and nums[k] == nums[k+1]:
                         k -= 1
         return ans
             
