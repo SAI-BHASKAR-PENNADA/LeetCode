@@ -6,12 +6,12 @@ class Solution:
                 vals[num] += 1
             else:
                 vals[num] = 1
-        print(vals)
+        # print(vals)
         pairs = []
         for val in vals:
             pairs.append([vals[val], val])
         pairs.sort(reverse=True)
-        print(pairs)
+        # print(pairs)
         ans = []
         for pair in pairs:
             if len(ans) == k:
