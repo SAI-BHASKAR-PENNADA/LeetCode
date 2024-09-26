@@ -1,16 +1,13 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        
-        mymap = {}
+        ansMap = {}
         for string in strs:
-            sortedString = "".join(sorted(string))
-            # print(sortedString)
-            if sortedString in mymap:
-                mymap[sortedString].append(string)
+            key = "".join(sorted(string))
+            if key in ansMap:
+                ansMap[key].append(string)
             else:
-                mymap[sortedString] = [string]
-        
+                ansMap[key] = [string]
         ans = []
-        for maps in mymap:
-            ans.append(mymap[maps])
+        for key in ansMap:
+            ans.append(ansMap[key])
         return ans
