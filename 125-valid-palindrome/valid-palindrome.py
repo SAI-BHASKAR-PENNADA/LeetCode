@@ -1,6 +1,6 @@
 class Solution:
     def isalphanum(self, ch):
-        if (ch >= 'a' and ch <= 'z') or (ch >= 'A' and ch <= 'Z') or (ch >= '0' and ch <= '9'):
+        if (ch >= 'a' and ch <= 'z') or (ch >= '0' and ch <= '9'):
             return True
         return False
 
