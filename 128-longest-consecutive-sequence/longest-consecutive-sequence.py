@@ -1,18 +1,19 @@
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        myset = set()
-
-        for num in nums:
-            myset.add(num)
+        newSet = set(nums)
 
         ans = 0
-        for num in myset:
-            counter = 1
-            if num - 1 not in myset:
-                num += 1
-                while num in myset:
-                    num += 1
-                    counter += 1
-            ans = max(ans, counter)
-        
+        for num in nums:
+            count = 1
+            crawl = num - 1
+            while crawl in newSet:
+                count += 1
+                newSet.remove(crawl)
+                crawl -= 1
+            crawl = num + 1
+            while crawl in newSet:
+                count += 1
+                newSet.remove(crawl)
+                crawl += 1
+            ans = max(ans, count)
         return ans
