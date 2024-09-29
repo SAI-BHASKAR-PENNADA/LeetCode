@@ -15,9 +15,9 @@ class Solution:
             else:
                 high = mid - 1
         
-        if low == high:
-            if matrix[low][0] == target:
-                return True
+        # if low == high:
+        #     if matrix[low][0] == target:
+        #         return True
 
         if low == high - 1:
             if matrix[high][0] == target:
