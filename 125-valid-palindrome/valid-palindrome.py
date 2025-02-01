@@ -1,22 +1,29 @@
 class Solution:
-    def isalphanum(self, ch):
-        if (ch >= 'a' and ch <= 'z') or (ch >= '0' and ch <= '9'):
-            return True
-        return False
-
     def isPalindrome(self, s: str) -> bool:
-        s = s.lower()
+        
+        def isAlphaNum(s):
+            if s >= 'a' and s <= 'z':
+                return True
+            if s >= 'A' and s <= 'Z':
+                return True
+            if s >= '0' and s <= '9':
+                return True
+            return False
+        
         i, j = 0, len(s) - 1
 
         while i < j:
-            if not self.isalphanum(s[i]):
+            if not isAlphaNum(s[i]):
                 i += 1
-            elif not self.isalphanum(s[j]):
+                continue
+            if not isAlphaNum(s[j]):
                 j -= 1
-            elif s[i] == s[j]:
-                i += 1
-                j -= 1
-            else:
-                return False
-        return True
+                continue
             
+            if s[i: i+1].lower() != s[j: j+1].lower():
+                return False
+            
+            i += 1
+            j -= 1
+        
+        return True
