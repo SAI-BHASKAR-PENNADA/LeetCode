@@ -20,7 +20,7 @@ class Solution:
                 j -= 1
                 continue
             
-            if s[i: i+1].lower() != s[j: j+1].lower():
+            if s[i].lower() != s[j].lower():
                 return False
             
             i += 1
