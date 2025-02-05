@@ -41,9 +41,9 @@ class Solution:
                 start += 1
                 addEnd = False
         
-        if isValid() and  (end - start < len(ans) or ans == ""):
-            # print("test", start, end)
-            ans = s[start:end]
+        # if isValid() and  (end - start < len(ans) or ans == ""):
+        #     # print("test", start, end)
+        #     ans = s[start:end]
 
         return ans
         
