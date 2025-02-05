@@ -1,47 +1,49 @@
 class Solution:
-    def isvalid(self, sourcemap, curmap):
-        for key in sourcemap:
-            if key not in curmap or curmap[key] < sourcemap[key]:
-                return False
-        return True
-
     def minWindow(self, s: str, t: str) -> str:
-        if len(s) < len(t):
-            return ""
-        
-        sourcemap = {}
-        for ch in t:
-            if ch in sourcemap:
-                sourcemap[ch] += 1
-            else:
-                sourcemap[ch] = 1
-        
-        curmap = {}
-        for i in range(0, len(t)):
-            if s[i] in curmap:
-                curmap[s[i]] += 1
-            else:
-                curmap[s[i]] = 1
-        
-        start = 0
-        end = len(t) - 1
-        curminlen = len(s) + 1
         ans = ""
-        while True:
-            isvalidstate = self.isvalid(sourcemap, curmap)
+        start = 0
+        end = 0
 
-            if isvalidstate:
-                if curminlen > end-start+1:
-                    curminlen = min(curminlen,  end - start + 1)
-                    ans = s[start:end+1]
-                curmap[s[start]] -= 1
-                start = start + 1
+        tmap = {}
+        for ch in t:
+            if ch not in tmap:
+                tmap[ch] = 1
             else:
-                end = end + 1
-                if end >= len(s):
+                tmap[ch] += 1
+        
+        smap = {}
+        def isValid():
+            if end - start + 1 < len(t):
+                return False
+            # print(smap, tmap)
+            valid = True
+            for ch in tmap:
+                if ch not in smap or tmap[ch] > smap[ch]:
+                    valid = False
                     break
-                if s[end] in curmap:
-                    curmap[s[end]] += 1 
+            return valid
+
+        addEnd = True
+        while end < len(s):
+            if addEnd:
+                if s[end] not in smap:
+                    smap[s[end]] = 1
                 else:
-                    curmap[s[end]] = 1
+                    smap[s[end]] += 1
+
+            if not isValid():
+                end += 1
+                addEnd = True
+            else:
+                if end - start + 1 < len(ans) or ans == "":
+                    ans = s[start:end+1]
+                smap[s[start]] -= 1
+                start += 1
+                addEnd = False
+        
+        if isValid() and  (end - start < len(ans) or ans == ""):
+            # print("test", start, end)
+            ans = s[start:end]
+
         return ans
+        
