@@ -11,25 +11,20 @@ class Solution:
             else:
                 tmap[ch] += 1
         
-        smap = {}
+        count = 0
         def isValid():
             if end - start + 1 < len(t):
                 return False
-            # print(smap, tmap)
-            valid = True
-            for ch in tmap:
-                if ch not in smap or tmap[ch] > smap[ch]:
-                    valid = False
-                    break
-            return valid
+            
+            return count == len(tmap)
 
         addEnd = True
         while end < len(s):
             if addEnd:
-                if s[end] not in smap:
-                    smap[s[end]] = 1
-                else:
-                    smap[s[end]] += 1
+                if s[end] in tmap:
+                    tmap[s[end]] -= 1
+                    if tmap[s[end]] == 0:
+                        count += 1
 
             if not isValid():
                 end += 1
@@ -37,13 +32,12 @@ class Solution:
             else:
                 if end - start + 1 < len(ans) or ans == "":
                     ans = s[start:end+1]
-                smap[s[start]] -= 1
+                if s[start] in tmap:
+                    tmap[s[start]] += 1
+                    if tmap[s[start]] == 1:
+                        count -= 1
                 start += 1
                 addEnd = False
-        
-        # if isValid() and  (end - start < len(ans) or ans == ""):
-        #     # print("test", start, end)
-        #     ans = s[start:end]
 
         return ans
         
